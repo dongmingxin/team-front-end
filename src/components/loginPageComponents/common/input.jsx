@@ -16,7 +16,7 @@ const Input = ({name, value, label, onChange, type, error}) => {
                 variant="outlined"
             >
             </TextField>
-            {error && <Alert variant="outlined" severity="error" style={{marginTop:'5px'}}>
+            {error && <Alert variant="outlined" severity="error" className="errorMessage">
                 {error}
             </Alert>}
         </FormControl>

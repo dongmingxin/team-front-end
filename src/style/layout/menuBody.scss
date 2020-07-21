@@ -36,6 +36,10 @@
             height: 180px;
             display: flex;
             flex-direction: column;
+            @include respond-to(extra-small) {
+                width: 160px;
+                height: 250px;
+            }
             @include respond-to(small) {
                 width: 220px;
                 height: 250px;
@@ -91,5 +95,5 @@
     position: fixed;
     left: 50%;
     right: 50%;
-    margin-top: 50px;
+    margin-top: 450px;
 }

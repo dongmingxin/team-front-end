@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Joi from "joi-browser";
 import { Link } from 'react-router-dom'; 
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
 import Input from './common/input';
 import CheckBox from './checkBox';
@@ -64,6 +65,11 @@ class Login extends Component {
             <div className="loginContainer">
                 <div className="loginBackgroundWrapper"></div>
                 <div className="loginForm">
+                    <div className="loginForm__home">
+                        <Link to='/'>
+                            <HomeIcon fontSize="large" color="primary"/>
+                        </Link>
+                    </div>
                     <div className="loginForm__logo">
                         <LockOutlinedIcon />
                     </div>

@@ -12,8 +12,9 @@ class NavBar extends Component {
 
     async componentDidMount() {
         const user = await getCurrentUser();
-        this.setState({ user })
+        this.setState({ user });
     }
+
 
     render() { 
         return ( 
@@ -36,13 +37,10 @@ class NavBar extends Component {
                         )}
                         {this.state.user && (
                             <React.Fragment>
-                                <li><NavLink className="item" activeClassName="navLinkActive" to="/cart">CART</NavLink></li>
                                 <li className="loginItem">
                                     <NavLink className="item" activeClassName="navLinkActive" to="/logout">LOGOUT</NavLink>
                                 </li>
-                                {this.state.user.isAdmin && (
-                                    <li><NavLink className="item" activeClassName="navLinkActive" to="/admin">ADMIN</NavLink></li>
-                                )}
+                                <li><NavLink className="item" activeClassName="navLinkActive" to="/cart">CART</NavLink></li>
                             </React.Fragment>
                         )}
                     </ul>

@@ -8,6 +8,7 @@ import MnueDesserts from './components/menuPageComponents/menuDesserts';
 import Login from './components/loginPageComponents/login';
 import Logout from './components/loginPageComponents/logout';
 import Register from './components/loginPageComponents/register';
+import ProductPage from './components/menuPageComponents/common/productPage';
 import { getCurrentUser } from './components/services/auth';
 
 class App extends Component {
@@ -18,7 +19,8 @@ class App extends Component {
   async componentDidMount() {
     const user = await getCurrentUser();
     this.setState({user});
-    console.log(user); 
+    // console.log(user);
+    // console.log(localStorage.getItem("token")) 
   }
 
   render() {
@@ -32,7 +34,8 @@ class App extends Component {
           <Route exact path="/cart" component={MenuCart}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/logout" component={Logout}/>
-          <Route exact path="/register" component={Register}/>            
+          <Route exact path="/register" component={Register}/>
+          <Route exact path="/product/:productId" component={ProductPage}/>            
         </Switch>
     );
   }

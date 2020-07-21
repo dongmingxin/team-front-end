@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'; 
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
 import Input from './common/input';
 // import AddressInput from 'material-ui-address-input';
@@ -72,6 +74,11 @@ class Register extends Component {
             <div className="registerContainer">
                 <div className="registerBackgroundWrapper"></div>
                 <div className="registerForm">
+                    <div className="registerForm__home">
+                        <Link to='/'>
+                            <HomeIcon fontSize="large" color="primary"/>
+                        </Link>
+                    </div>
                     <div className="registerForm__logo">
                             <LockOutlinedIcon />
                     </div>
@@ -122,6 +129,11 @@ class Register extends Component {
                                 type='text'
                                 error={this.state.errors.address}
                             />
+                        </div>
+                    </div>
+                    <div className="registerForm__link">
+                        <div className="registerForm__link--login">
+                            <Link to='/login' className="textStyle">Already have an Account?</Link>
                         </div>
                     </div>
                     <div className="registerForm__submitButton">

@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { appendAuthToken } from './auth';
 
-const apiEndpoint = "http://localhost:3900/api/users";
+// const apiEndpoint = "http://localhost:3900/api/customers";
+const apiEndpoint = "http://localhost:3001/api/v1/customers";
 
 export const register = async (user) => {
     const { data } = await axios.post(apiEndpoint, {
@@ -13,11 +15,13 @@ export const register = async (user) => {
 }
 
 export const getUser = async (userId) => {
-    const { data } = await axios.get(apiEndpoint + '/' + userId)
+    const { data } = await axios.get(apiEndpoint + '/' + userId, appendAuthToken())
     return data
 }
 
-export const getCurrentUser = async () => {
-    const { data } = await axios.get(apiEndpoint + '/me')
-    return data
-} 
+
+
+// export const getCurrentUser = async () => {
+//     const { data } = await axios.get(apiEndpoint + '/me')
+//     return data
+// } 

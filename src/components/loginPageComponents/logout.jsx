@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { logout } from '../services/auth';
 
 class Logout extends Component {

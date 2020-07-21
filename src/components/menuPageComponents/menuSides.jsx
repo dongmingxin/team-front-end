@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import RenderCard from './common/renderCard';
-import { getAllSide } from '../services/side';
+import { getAllSideGenres } from '../services/genres';
+import { getCurrentUser } from '../services/auth';
 import NavBar from './NavBar/navbar';
 import MenuSlider from './slider';
 import '../../style/layout/menuBody.scss';
@@ -9,15 +10,26 @@ import '../../style/layout/menuContainer.scss';
 
 class MenuSides extends Component {
     state = { 
-        sides: [],
-        isloading: true
+        sideGenres: [],
+        isloading: true,
+        user: ''
      }
     
     async componentDidMount() {
         // this._isMounted = true;
-        const sides = await getAllSide();
-        this.setState({ sides, isloading: false });
+        const sideGenres = await getAllSideGenres();
+        const user = await getCurrentUser();
+        this.setState({ sideGenres, isloading: false, user });
     }
+
+    handleSelect = async (productId) => {
+        if(!this.state.user) {
+            return this.props.history.push("/login")   
+        };
+        this.props.history.push(`/product/${productId}`)
+        
+    }
+
     render() {
         const {isloading} = this.state; 
         return (
@@ -25,12 +37,18 @@ class MenuSides extends Component {
                 <div className="contentContainer">
                     <NavBar />
                     <MenuSlider />
-                    <div className="category">
-                        <div className="category__title">ALL SIDES</div>
-                        {isloading ? 
-                            <CircularProgress className="loadingSpinner"/> : 
-                            <RenderCard cardList={this.state.sides}/>}
-                    </div>
+                    {isloading ? 
+                        <CircularProgress className="loadingSpinner"/> : 
+                        (this.state.sideGenres.map(sideGenre => (
+                        <div className="category" key={sideGenre._id}>
+                            <div className="category__title">{sideGenre.name}</div>
+                            <RenderCard 
+                                cardList = {sideGenre.sides}
+                                handleSelect = {this.handleSelect}
+                            />
+                        </div>
+                        ))) 
+                    }
                 </div>
             </div> 
          );

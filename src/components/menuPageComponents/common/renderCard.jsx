@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../../style/layout/menuBody.scss';
 
-const RenderCard = ({cardList}) => {
+const RenderCard = ({cardList, handleSelect}) => {
     return ( 
         <div className="category__cardContianer">
             {cardList.map(card => (
@@ -12,11 +12,11 @@ const RenderCard = ({cardList}) => {
                         <div>{`From $${card.price}`}</div>
                         <div>{`${card.calorie}kj^`}</div>
                     </div>
-                    <button>Select</button>
+                    <button onClick={() => handleSelect(card._id)}>Select</button>
                 </div>
             ))}
         </div>
      );
 }
- 
+
 export default RenderCard;

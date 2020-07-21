@@ -2,7 +2,8 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { getUser } from './user';
 
-const apiEndpoint = "http://localhost:3900/api/auth";
+// const apiEndpoint = "http://localhost:3900/api/auth";
+const apiEndpoint = "http://localhost:3001/api/v1/customerAuth";
 
 export const login = async (user) => {
     const { data } = await axios.post(apiEndpoint, {
@@ -36,8 +37,8 @@ export function getJwt() {
     return localStorage.getItem("token")
 }
 
-export function appendAuthToken(config) {
+export function appendAuthToken() {
     const jwtToken = localStorage.getItem("token");
     const Authorization = jwtToken && `Bearer ${jwtToken}`;
-    return {...config, headers: { Authorization, ...config.header }};
+    return {headers: { Authorization }};
 }
