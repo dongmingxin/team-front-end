@@ -1,0 +1,16 @@
+@import "./variable";
+
+
+// Box shadow
+@mixin box-shadow {
+    box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.1)
+}
+
+// Media  queries
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media screen and (min-width: #{map-get($breakpoints, $breakpoint)}) {
+            @content;
+        }
+    }
+}
