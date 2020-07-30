@@ -3,9 +3,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../../style/layout/menuHeader.scss';
-import sliderContent1 from '../../img/ad1.PNG';
-import sliderContent2 from '../../img/ad2.PNG';
-import sliderContent3 from '../../img/ad3.PNG';
+// import sliderContent1 from '../../img/ad1.PNG';
+// import sliderContent2 from '../../img/ad2.PNG';
+// import sliderContent3 from '../../img/ad3.PNG';
+import sliderContent1 from '../../img/ad4.jpg';
+import sliderContent2 from '../../img/ad5.jpg';
+import sliderContent3 from '../../img/ad6.jpg';
 
 const MenuSlider = () => {
     return ( 

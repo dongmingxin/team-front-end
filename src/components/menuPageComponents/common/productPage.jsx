@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Alert from '@material-ui/lab/Alert';
 import NavBar from '../NavBar/navbar';
 import { getProduct } from '../../services/products';
-import { getCurrentUser } from '../../services/auth';
+import { getCurrentUser } from '../../services/user';
 import { addProductToCart } from '../../services/cart';
 import '../../../style/layout/menuBody.scss';
 import '../../../style/layout/menuContainer.scss';
@@ -61,8 +61,8 @@ class ProductPage extends Component {
         const { product, quantity, error } = this.state 
         return ( 
             <div className="container">
+                <NavBar />
                 <div className="contentContainer">
-                    <NavBar />
                     <div className="product">
                         <div className="product__title">{product.name}</div>
                         <div className="product__contentContainer">
@@ -74,6 +74,7 @@ class ProductPage extends Component {
                                     <div className="product__info--price">{`From $${product.price}`}</div>
                                     <div className="product__info--calorie">{`Cal：${product.calorie}kj^`}</div>
                                 </div>
+                                <div className="product__description">{product.description}</div>
                                 <div className="product__action">
                                     <div className="product__action--selectQuantity">
                                         <label>Select Quantity:</label>

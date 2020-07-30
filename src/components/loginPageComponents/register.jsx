@@ -4,7 +4,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
 import Input from './common/input';
-// import AddressInput from 'material-ui-address-input';
 import '../../style/layout/register.scss';
 import Joi from 'joi-browser';
 import { register } from '../services/user';
@@ -12,8 +11,6 @@ import { loginWithJwt } from '../services/auth';
 
 class Register extends Component {
     state = { 
-        // address: '',
-        // addresses: [],
         inputs: {
             name:'',
             username:'',
@@ -115,12 +112,6 @@ class Register extends Component {
                             />
                         </div>
                         <div className="registerForm__input--address">
-                            {/* <AddressInput
-                                onAdd={this.handleAddAddress}
-                                onChange={this.handleChangeAddress}
-                                value={this.state.address}
-                                allAddresses={this.state.addresses}
-                            /> */}
                              <Input 
                                 name="address"
                                 value={this.state.inputs.address}

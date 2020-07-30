@@ -1,0 +1,60 @@
+@import "../utils/mixin.scss";
+
+.notFoundIconWrapper {
+    margin-top: 40px;
+    opacity: 0.6;
+    .notFoundIcon {
+        font-size: 150px;
+        @include respond-to(small) {
+            font-size: 250px;
+        }
+        @include respond-to(large) {
+            font-size: 250px;
+        }
+        @include respond-to(extra-large) {
+            font-size: 250px;
+        }
+    }
+    @include respond-to(small) {
+        margin-top: 100px;
+    }
+    @include respond-to(large) {
+        margin-top: 100px;
+    }
+    @include respond-to(extra-large) {
+        margin-top: 100px;
+    }
+}
+
+.errorCode {
+    font-size: 80px;
+    opacity: 0.6;
+    @include respond-to(small) {
+        font-size: 100px;
+    }
+    @include respond-to(large) {
+        font-size: 100px;
+    }
+    @include respond-to(extra-large) {
+        font-size: 100px;
+    }
+}
+
+.errorMessage {
+    font-size: 30px;
+    opacity: 0.6;
+    @include respond-to(small) {
+        font-size: 50px;
+    }
+    @include respond-to(large) {
+        font-size: 50px;
+    }
+    @include respond-to(extra-large) {
+        font-size: 50px;
+    }
+}
+
+.errorHandleMessage {
+    margin-top: 25px;
+    opacity: 0.8;
+}

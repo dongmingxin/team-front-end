@@ -1,33 +1,46 @@
-import axios from 'axios';
+import { get } from './axios';
+import { toast } from 'react-toastify'
 
-// const pizzaUrl = "http://localhost:3900/api/pizzaGenres";
-// const drinkUrl = "http://localhost:3900/api/drinkGenres";
-// const dessertUrl = "http://localhost:3900/api/dessertGenres";
-// const sideUrl = "http://localhost:3900/api/sideGenres"; 
-const pizzaUrl = "http://localhost:3000/api/v1/pizzaGenres";
-const drinkUrl = "http://localhost:3000/api/v1/drinkGenres";
-const dessertUrl = "http://localhost:3000/api/v1/dessertGenres";
-const sideUrl = "http://localhost:3000/api/v1/sideGenres";
+const API_PIZZA_GENRE_URL = "/pizzaGenres";
+const API_DRINK_GENRE_URL = "/drinkGenres";
+const API_DESSERT_GENRE_URL = "/dessertGenres";
+const API_SIDE_GENRE_URL = "/sideGenres";
 
 
 export const getAllPizzaGenre = async () => {
-    const { data } = await axios.get(pizzaUrl)
-    return data
+    try {
+        const { data } = await get(API_PIZZA_GENRE_URL)
+        return data       
+    } catch (ex) {
+        toast.error("Failed to load pizzas")    
+    }
 }
 
 export const getAllDessertGenres = async () => {
-    const { data } = await axios.get(dessertUrl)
-    return data
+    try {
+        const { data } = await get(API_DESSERT_GENRE_URL)
+        return data      
+    } catch (ex) {
+        toast.error("Failed to load desserts")
+    }
 }
 
 export const getAllSideGenres = async () => {
-    const { data } = await axios.get(sideUrl);
-    return data
+    try {
+        const { data } = await get(API_SIDE_GENRE_URL);
+        return data
+    } catch (ex) {
+        toast.error("Failed to load sides")
+    }   
 }
 
 
 export const getAllDrinkGenres = async () => {
-    const { data } = await axios.get(drinkUrl)
-    return data
+    try {
+        const { data } = await get(API_DRINK_GENRE_URL)
+        return data     
+    } catch (ex) {
+        toast.error("Failed to load drinks")
+    }
 }
 

@@ -1,12 +1,16 @@
-import axios from 'axios';
+import { put, post, del } from './axios';
 
-// const cartUrl = "http://localhost:3900/api/carts";
-const cartUrl = "http://localhost:3000/api/v1/carts";
+const API_CART_URL = '/carts';
 
 export const addProductToCart = async (cartId, data) => {
-    await axios.post(cartUrl + '/' + cartId + '/order', data)
+    await post(API_CART_URL + '/' + cartId + '/order', data)
 }
 
 export const deleteProductFromCart = async (cartId, orderId) => {
-    await axios.delete(cartUrl + '/' + cartId + '/order' + '/' + orderId)
+    await del(`${API_CART_URL}/${cartId}/order/${orderId}`)
 }
+
+export const deleteAllProductsFromCart = async(cartId) => {
+    const { data } = await put(API_CART_URL + '/' + cartId + '/remove');
+    return data
+} 

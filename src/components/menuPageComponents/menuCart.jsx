@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar/navbar';
 import TextField from '@material-ui/core/TextField';
-import { getCurrentUser } from '../services/auth';
-import { deleteProductFromCart } from '../services/cart'
-import RenderOrderCard from './common/renderOrderCard'
+import { getCurrentUser } from '../services/user';
+import { deleteProductFromCart, deleteAllProductsFromCart } from '../services/cart'
+import { addStripe } from "../services/stripe";
+import { getStripeKey } from "../services/stripe";
+import StripeCheckout from "react-stripe-checkout";
+import RenderOrderCard from './common/renderOrderCard';
+import { toast } from 'react-toastify'
 import '../../style/layout/menuBody.scss';
 import '../../style/layout/menuContainer.scss';
 import '../../style/layout/order.scss';
@@ -12,12 +16,17 @@ class MenuCart extends Component {
     state = { 
         user: '',
         orders: [],
-        totalPrice: '',
+        totalPrice: 0,
+        stripeKey: ''
      }
 
     async componentDidMount() {
         const user = await getCurrentUser();
-        this.setState({ user, orders: user.userCart.orders, totalPrice: user.userCart.totalPrice });
+        const stripeKey = await getStripeKey();
+        this.setState({ user, stripeKey });
+        const orders = this.state.user.userCart.orders
+        const totalPrice = this.state.user.userCart.totalPrice
+        this.setState({ orders, totalPrice})
     }
 
     handleRemove = async (productId) => {
@@ -34,12 +43,32 @@ class MenuCart extends Component {
         return false
     }
 
+    handlePayment = async (token) => {
+        const orders = this.state.orders
+        const price = (this.state.totalPrice).toFixed(2)
+        const name = this.state.user.name
+        const response = await addStripe(token, price, orders, name)
+        console.log(token)
+        if(response.status === 'success') {
+            this.props.history.push("/")
+            toast('Payment Successful!, Please Check your email for Order ID',
+            {type: 'success'});
+            await deleteAllProductsFromCart(this.state.user.userCart._id)
+
+        } else {
+            toast('Payment went wrong, please try again',
+            {type: 'error'});
+        }
+         
+
+    }
+
     render() {
-        const { orders, totalPrice } = this.state
+        const { orders, totalPrice, stripeKey } = this.state
         return ( 
             <div className="container">
+                <NavBar />
                 <div className="contentContainer">
-                    <NavBar />
                     <div className="order">
                         <div className="order__voucher">
                             <div className="order__voucher--container">
@@ -72,8 +101,15 @@ class MenuCart extends Component {
                             </div>
                         }
                         <div className="order__submit">
-                            { !this.isCartEmpty() &&
-                                <button>Next</button>
+                            { !this.isCartEmpty() && 
+                            stripeKey && totalPrice!==0 && <StripeCheckout
+                            stripeKey={stripeKey}
+                            token={this.handlePayment}
+                            billingAddress
+                            shippingAddress
+                            amount={totalPrice*100}
+                            name="ORDER"
+                            ><button>MAKE PAYMENT</button></StripeCheckout>
                             }
                         </div>
                     </div>

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import RenderCard from './common/renderCard';
 import { getAllSideGenres } from '../services/genres';
-import { getCurrentUser } from '../services/auth';
+import { getCurrentUser } from '../services/user';
+import { isLoggedIn } from '../utils/auth';
 import NavBar from './NavBar/navbar';
 import MenuSlider from './slider';
 import '../../style/layout/menuBody.scss';
@@ -18,8 +19,11 @@ class MenuSides extends Component {
     async componentDidMount() {
         // this._isMounted = true;
         const sideGenres = await getAllSideGenres();
-        const user = await getCurrentUser();
-        this.setState({ sideGenres, isloading: false, user });
+        this.setState({ sideGenres, isloading: false});
+        if (!isLoggedIn()===false) {
+            const user = await getCurrentUser();
+            this.setState({ user });
+        };
     }
 
     handleSelect = async (productId) => {
@@ -34,12 +38,12 @@ class MenuSides extends Component {
         const {isloading} = this.state; 
         return (
             <div className="container">
+                <NavBar />
                 <div className="contentContainer">
-                    <NavBar />
                     <MenuSlider />
                     {isloading ? 
                         <CircularProgress className="loadingSpinner"/> : 
-                        (this.state.sideGenres.map(sideGenre => (
+                        (this.state.sideGenres && this.state.sideGenres.map(sideGenre => (
                         <div className="category" key={sideGenre._id}>
                             <div className="category__title">{sideGenre.name}</div>
                             <RenderCard 

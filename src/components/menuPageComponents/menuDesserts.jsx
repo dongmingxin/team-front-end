@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { getAllDessertGenres } from '../services/genres';
-import { getCurrentUser } from '../services/auth';
+import { getCurrentUser } from '../services/user';
+import { isLoggedIn } from '../utils/auth';
 import RenderCard from './common/renderCard';
 import NavBar from './NavBar/navbar';
 import MenuSlider from './slider';
@@ -17,8 +18,11 @@ class MenuDesserts extends Component {
     
     async componentDidMount() {
         const dessertGenres = await getAllDessertGenres();
-        const user = await getCurrentUser();
-        this.setState({ dessertGenres, isloading: false, user });
+        this.setState({ dessertGenres, isloading: false });
+        if (!isLoggedIn()===false) {
+            const user = await getCurrentUser();
+            this.setState({ user });
+        };
     }
 
     handleSelect = async (productId) => {
@@ -32,12 +36,12 @@ class MenuDesserts extends Component {
         const {isloading} = this.state; 
         return ( 
             <div className="container">
+                <NavBar />
                 <div className="contentContainer">
-                    <NavBar />
                     <MenuSlider />
                     {isloading ? 
                         <CircularProgress className="loadingSpinner"/> : 
-                        (this.state.dessertGenres.map(dessertGenre => (
+                        (this.state.dessertGenres && this.state.dessertGenres.map(dessertGenre => (
                         <div className="category" key={dessertGenre._id}>
                             <div className="category__title">{dessertGenre.name}</div>
                             <RenderCard 

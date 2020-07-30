@@ -7,36 +7,336 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    @include respond-to(small) {
-        height: 35px;
-        margin-top: 35px;
+    // background-color: white;
+    // box-shadow: 0px 5px 20px -2px rgba(0,0,0,0.39);
+    &__topBarContainer {
+        height: 60px;
+        width: 95%;
         display: flex;
-        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
+        // background-color: green;
+        @include respond-to(small) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 95%;
+            height: 80px;
+        }
+        @include respond-to(large) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 85%;
+            height: 80px;
+        }
+        @include respond-to(extra-large) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 65%;
+            height: 80px;
+        }
+        &--logo {
+            img {
+                width: 150px;
+                @include respond-to(small) {
+                    width: 150px;
+                }
+                @include respond-to(large) {
+                    width: 150px;
+                }
+                @include respond-to(extra-large) {
+                    width: 150px;
+                }
+            }
+        }
+        &--buttonContainer {
+            // background-color: lightblue;
+            // display: flex;
+            // flex-direction: column;
+            // width: 150px;
+            // height: 200px;
+            // position: relative;
+            @include respond-to(small) {
+                display: flex;
+                flex-direction: column;
+                width: 150px;
+                height: 200px;
+                position: relative;
+            }
+            @include respond-to(large) {
+                display: flex;
+                flex-direction: column;
+                width: 150px;
+                height: 200px;
+                position: relative;
+            }
+            @include respond-to(extra-large) {
+                display: flex;
+                flex-direction: column;
+                width: 150px;
+                height: 200px;
+                position: relative;
+            }
+        }
+        .checkOrderButton {
+            width: 100%;
+            // height: 100px;
+            // display: flex;
+            // justify-content: space-between;
+            // align-items: flex-end;
+            // text-decoration: underline;
+            cursor:pointer;
+            @include respond-to(small) {
+                width: 100%;
+                height: 100px;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                text-decoration: underline;
+                cursor:pointer;
+            }
+            @include respond-to(large) {
+                width: 100%;
+                height: 100px;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                text-decoration: underline;
+                cursor:pointer;
+            }
+            @include respond-to(extra-large) {
+                width: 100%;
+                height: 100px;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                text-decoration: underline;
+                cursor:pointer;
+            }
+            .topBarbuttonStyle {
+                font-size: 50px;
+                @include respond-to(small) {
+                    font-size: 30px;
+                }
+                @include respond-to(large) {
+                    font-size: 30px;
+                }
+                @include respond-to(extra-large) {
+                    font-size: 30px;
+                }
+            }
+            .topBarbuttonStyleSecond {
+                font-style: red;
+                font-size: 50px;
+                @include respond-to(small) {
+                    font-size: 30px;
+                }
+                @include respond-to(large) {
+                    font-size: 30px;
+                }
+                @include respond-to(extra-large) {
+                    font-size: 30px;
+                }
+            }
+            &__title {
+                display: none;
+                @include respond-to(small) {
+                    display: block;
+                }
+                @include respond-to(large) {
+                    display: block;
+                }
+                @include respond-to(extra-large) {
+                    display: block;
+                }
+            }
+        }
+        .checkOrderDropdownList {
+            width: 80%;
+            height: 100%;
+            position: absolute;
+            margin-top: 0px;
+            right: 0;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: #d9d9d9;
+            box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.1);
+            &__item {
+                width: 100%;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                background-color: #d9d9d9;
+                &--link {
+                    text-decoration: none;
+                    color:black;
+                    opacity: 0.6;
+                    text-align: center;
+                    font-size: 15px;
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+            &__mobileItem {
+                width: 100%;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                background-color: #d9d9d9;
+                &--link {
+                    text-decoration: none;
+                    color:black;
+                    opacity: 0.6;
+                    text-align: center;
+                    font-size: 15px;
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+            &--link:hover {
+                text-decoration: white;
+            }
+            @include respond-to(small) {
+                width: 100%;
+                height: 0%;
+                position: absolute;
+                margin-top: 100px;
+                background-color: transparent;
+                z-index: 200;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                &__item {
+                    width: 100%;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    border: 1px solid lightgray;
+                    background-color: white;
+                    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.39);
+                    &--link {
+                        text-decoration: none;
+                        color:black;
+                        text-align: center;
+                        font-size: 15px;
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+                &__mobileItem {
+                    display: none;
+                }
+                &__item:hover {
+                    filter: brightness(95%);
+                }
+            }
+            @include respond-to(large) {
+                width: 100%;
+                height: 0%;
+                position: absolute;
+                margin-top: 100px;
+                background-color: transparent;
+                z-index: 200;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                &__item {
+                    width: 100%;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    border: 1px solid lightgray;
+                    background-color: white;
+                    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.39);
+                    &--link {
+                        text-decoration: none;
+                        color:black;
+                        text-align: center;
+                        font-size: 15px;
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+                &__mobileItem {
+                    display: none;
+                }
+                &__item:hover {
+                    filter: brightness(95%);
+                }
+            }
+            @include respond-to(extra-large) {
+                width: 100%;
+                height: 0%;
+                position: absolute;
+                margin-top: 100px;
+                background-color: transparent;
+                z-index: 200;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                transform: translateX(0);
+                &__item {
+                    width: 100%;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    border: 1px solid lightgray;
+                    background-color: white;
+                    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.39);
+                    &--link {
+                        text-decoration: none;
+                        color:black;
+                        text-align: center;
+                        font-size: 15px;
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+                &__mobileItem {
+                    display: none;
+                }
+                &__item:hover {
+                    filter: brightness(95%);
+                }
+            }
+        }
     }
-    @include respond-to(large) {
-        height: 35px;
-        margin-top: 35px;
+
+    &__navigationBarContainer {
+        width: 100%;
+        margin-top: 0;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
-    }
-    @include respond-to(extra-large) {
-        height: 35px;
-        margin-top: 35px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-    &__logo{
-        img{
-            width: 100px;
+        border-bottom: 1px dotted black;
+        display: none;
+        @include respond-to(small) {
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 95%;
+            display: block;
+        }
+        @include respond-to(large) {
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 85%;
+            display: block;
+        }
+        @include respond-to(extra-large) {
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 65%;
+            display: block;
         }
     }
 
     &__link {
         width: 100%;
-        height: 50px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -56,30 +356,30 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            border-radius: 25px;
             li {
-                @include box-shadow();
-                width: 20%;
                 height: 100%;
-                background-color: #42362e;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 .item {
                     text-decoration: none;
-                    color:#ffffff;
+                    padding: 7px 30px;
+                    color:#494846;
                     text-align: center;
                     font-size: 7px;
                     display: flex;
                     justify-content: center;
                     @include respond-to(small) {
-                        font-size: 16px;
+                        font-size: 20px;
+                        font-weight: bold;
                     }
                     @include respond-to(large) {
-                        font-size: 16px;
+                        font-size: 20px;
+                        font-weight: bold;
                     }
                     @include respond-to(extra-large) {
-                        font-size: 16px;
+                        font-size: 20px;
+                        font-weight: bold;
                     }
                     &__login {
                         display: flex;
@@ -87,19 +387,20 @@
                     }
                 }
                 .navLinkActive {
-                    background-color:#046494;
-                    height: 100%;
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
+                    color:white;
+                    background-color: #c8102e;
+
                 }
             }
-            li:hover {
-                background-color: #2e96d5;
+            li:after {
+                display:block;
+                content: '';
+                border-bottom:  2px solid #494846;  
+                transform: scaleX(0);  
+                transition: transform 500ms ease-in-out;
             }
-            .loginItem {
-                background-color: #0db14b;
+            li:hover::after {
+                transform: scaleX(1);
             }
         }
     }
@@ -107,35 +408,35 @@
 
 .menuSlider {
     height: 80px;
-    width: 80%;
+    width: 100%;
     margin-top: 15px;
-    border-radius: 25px;
     @include respond-to(small) {
         margin-top: 50px;
-        height: 120px;
+        height: 100px;
     }
     @include respond-to(large) {
         margin-top: 50px;
-        height: 120px;
+        height: 150px;
     }
     @include respond-to(extra-large) {
         margin-top: 80px;
-        height: 120px;
+        height: 150px;
     }
     &__item {
         height: 80px;
         width: 100%;
-        border-radius: 25px;
         @include respond-to(small) {
-            height: 120px;
+            height: 100px;
         }
         @include respond-to(large) {
-            height: 120px;
+            height: 150px;
+        }
+        @include respond-to(extra-large) {
+            height: 150px;
         }
         img{
             height: 100%;
             width: 100%;
-            border-radius: 25px;
         }
     }
     .slick-dots li button::before {

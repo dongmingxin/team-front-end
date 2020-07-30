@@ -1,11 +1,9 @@
-import axios from 'axios';
-import { appendAuthToken } from './auth';
+import { get, post } from './axios';
 
-// const apiEndpoint = "http://localhost:3900/api/customers";
-const apiEndpoint = "http://localhost:3000/api/v1/customers";
+const API_USER_URL = "/customers";
 
 export const register = async (user) => {
-    const { data } = await axios.post(apiEndpoint, {
+    const { data } = await post(API_USER_URL, {
         username: user.username,
         password: user.password,
         name: user.name,
@@ -14,14 +12,12 @@ export const register = async (user) => {
     return data
 }
 
-export const getUser = async (userId) => {
-    const { data } = await axios.get(apiEndpoint + '/' + userId, appendAuthToken())
-    return data
+
+export async function getCurrentUser() {
+    try {
+        const { data } = await get(`${API_USER_URL}/me`)
+        return data
+    } catch (ex) {
+        return null
+    }
 }
-
-
-
-// export const getCurrentUser = async () => {
-//     const { data } = await axios.get(apiEndpoint + '/me')
-//     return data
-// } 
