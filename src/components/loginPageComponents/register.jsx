@@ -79,7 +79,7 @@ class Register extends Component {
                     <div className="registerForm__logo">
                             <LockOutlinedIcon />
                     </div>
-                    <div className="registerForm__title">Register</div>
+                    <div className="registerForm__title">Sign Up</div>
                     <div className="registerForm__input">
                         <div className="registerForm__input--name">
                             <Input 

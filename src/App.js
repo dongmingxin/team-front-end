@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { Helmet } from "react-helmet";
 import 'react-toastify/dist/ReactToastify.css';
 import MenuPizza from './components/menuPageComponents/menuPizza';
 import MenuSides from './components/menuPageComponents/menuSides';
@@ -18,6 +19,7 @@ import ProtectedRoute from './components/utils/protectedRoute';
 import pageUnauthorized from './components/pageNotFound/pageUnauthorized';
 import { getCurrentUser } from './components/services/user';
 import { isLoggedIn } from './components/utils/auth';
+import tapIcon from './img/pizzaIcon.jpg';
 
 class App extends Component {
   state = {
@@ -34,6 +36,10 @@ class App extends Component {
     return (
       <Fragment >
         <ToastContainer />
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title>Margherita Pizza</title>
+        </Helmet>
         <Switch>
           <Redirect from="/" exact to="/pizza" />
             <Route exact path="/pizza" component={MenuPizza}/>
