@@ -15,6 +15,7 @@ import OrderSearch from './components/trackOrderPageComponents/orderSearch';
 import OrderCheck from './components/trackOrderPageComponents/orderTrack';
 import PageNotFound from './components/pageNotFound/pageNotFound';
 import ProtectedRoute from './components/utils/protectedRoute';
+import pageUnauthorized from './components/pageNotFound/pageUnauthorized';
 import { getCurrentUser } from './components/services/user';
 import { isLoggedIn } from './components/utils/auth';
 
@@ -46,7 +47,8 @@ class App extends Component {
             <Route exact path="/track" component={OrderSearch}/>
             <Route exact path="/track/:orderId" component={OrderCheck}/>
             <Route exact path="/product/:productId" component={ProductPage}/> 
-            <Route exact path="/not-found" component={PageNotFound}/>         
+            <Route exact path="/not-found" component={PageNotFound}/>
+            <Route exact path="/unauthorized-page" component={pageUnauthorized}/>          
             <Redirect to="/not-found" />
           </Switch>
       </Fragment>

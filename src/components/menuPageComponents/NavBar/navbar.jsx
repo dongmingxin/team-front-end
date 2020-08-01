@@ -4,19 +4,19 @@ import '../../../style/layout/menuHeader.scss';
 import logo from '../../../img/logo2.png';
 import CancelIcon from '@material-ui/icons/Cancel';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { getCurrentUser } from '../../services/user';
 import { isLoggedIn } from '../../utils/auth';
 
 class NavBar extends Component {
     state = {
-        user: '',
+        isloggedIn: '',
         isdropDownListOpen: false
     };
 
-    async componentDidMount() {
+    componentDidMount() {
         if (isLoggedIn() === false) return;
-        const user = await getCurrentUser();
-        this.setState({ user });
+        this.setState({ isloggedIn: true})
+        // const user = await getCurrentUser();
+        // this.setState({ user });
     }
 
     handleDropDownList = () => {
@@ -47,37 +47,37 @@ class NavBar extends Component {
                         {this.state.isdropDownListOpen && 
                             <div className="checkOrderDropdownList">
                                 <div className="checkOrderDropdownList__mobileItem">
-                                    <NavLink className="checkOrderDropdownList__mobileItem--link" activeClassName="navLinkActive"  to="/pizza">PIZZAS</NavLink>
+                                    <NavLink className="checkOrderDropdownList__mobileItem--link" activeClassName="sideLinkActive"  to="/pizza">PIZZAS</NavLink>
                                 </div>
                                 <div className="checkOrderDropdownList__mobileItem">
-                                    <NavLink className="checkOrderDropdownList__mobileItem--link" activeClassName="navLinkActive"  to="/sides">SIDES</NavLink>
+                                    <NavLink className="checkOrderDropdownList__mobileItem--link" activeClassName="sideLinkActive"  to="/sides">SIDES</NavLink>
                                 </div>
                                 <div className="checkOrderDropdownList__mobileItem">
-                                    <NavLink className="checkOrderDropdownList__mobileItem--link" activeClassName="navLinkActive"  to="/drinks">DRINKS</NavLink>
+                                    <NavLink className="checkOrderDropdownList__mobileItem--link" activeClassName="sideLinkActive"  to="/drinks">DRINKS</NavLink>
                                 </div>
                                 <div className="checkOrderDropdownList__mobileItem">
-                                    <NavLink className="checkOrderDropdownList__mobileItem--link" activeClassName="navLinkActive"  to="/desserts">DESSERTS</NavLink>
+                                    <NavLink className="checkOrderDropdownList__mobileItem--link" activeClassName="sideLinkActive"  to="/desserts">DESSERTS</NavLink>
                                 </div>
-                                {!this.state.user &&
+                                {!this.state.isloggedIn &&
                                     <Fragment>
                                         <div className="checkOrderDropdownList__item">
-                                            <NavLink className="checkOrderDropdownList__item--link" activeClassName="navLinkActive"  to="/login">LOGIN</NavLink>
+                                            <NavLink className="checkOrderDropdownList__item--link" activeClassName="sideLinkActive"  to="/login">LOGIN</NavLink>
                                         </div>
                                         <div className="checkOrderDropdownList__item">
-                                            <NavLink className="checkOrderDropdownList__item--link" activeClassName="navLinkActive"  to="/register">REGISTER</NavLink>
+                                            <NavLink className="checkOrderDropdownList__item--link" activeClassName="sideLinkActive"  to="/register">REGISTER</NavLink>
                                         </div>
                                     </Fragment>
                                 }
                                 <div className="checkOrderDropdownList__item">
-                                    <NavLink className="checkOrderDropdownList__item--link" activeClassName="navLinkActive"  to="/track">TRACK ORDER</NavLink>
+                                    <NavLink className="checkOrderDropdownList__item--link" activeClassName="sideLinkActive"  to="/track">TRACK ORDER</NavLink>
                                 </div>
-                                {this.state.user &&
+                                {this.state.isloggedIn &&
                                     <Fragment>
                                         <div className="checkOrderDropdownList__item">
-                                            <NavLink className="checkOrderDropdownList__item--link" activeClassName="navLinkActive"  to="/cart">MY ORDERS</NavLink>
+                                            <NavLink className="checkOrderDropdownList__item--link" activeClassName="sideLinkActive"  to="/cart">MY ORDERS</NavLink>
                                         </div>
                                         <div className="checkOrderDropdownList__item">
-                                            <NavLink className="checkOrderDropdownList__item--link" activeClassName="navLinkActive"  to="/logout">LOGOUT</NavLink>
+                                            <NavLink className="checkOrderDropdownList__item--link" activeClassName="sideLinkActive"  to="/logout">LOGOUT</NavLink>
                                         </div>
                                     </Fragment>
                                 }
@@ -92,7 +92,7 @@ class NavBar extends Component {
                             <li><NavLink className="item" activeClassName="navLinkActive" to="/sides">SIDES</NavLink></li>
                             <li><NavLink className="item" activeClassName="navLinkActive" to="/drinks">DRINKS</NavLink></li>
                             <li><NavLink className="item" activeClassName="navLinkActive" to="/desserts">DESSERTS</NavLink></li>
-                            {this.state.user && (
+                            {this.state.isloggedIn && (
                                 <li><NavLink className="item" activeClassName="navLinkActive" to="/cart">MY ORDER</NavLink></li>
                             )}
                         </ul>

@@ -10,7 +10,7 @@ const ProtectedRoute = ({ component: ProtectedComponent, ...rest }) => {
             render={routeProps => {
                 if (!isLoggedIn()) return (
                     <Redirect to={{
-                        pathname: '/not-found',
+                        pathname: '/unauthorized-page',
                         state: { from: routeProps.location.pathname },
                     }} />
                 );

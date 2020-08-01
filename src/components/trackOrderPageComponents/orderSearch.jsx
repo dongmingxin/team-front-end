@@ -3,6 +3,7 @@ import NavBar from '../menuPageComponents/NavBar/navbar';
 import deliver from '../../img/orderTrackImage2.png';
 import Joi from "joi-browser";
 import Input from './input';
+import Footer from '../footer/footer';
 import { getOrder } from '../services/order';
 import '../../style/layout/menuContainer.scss';
 import '../../style/layout/orderTrack.scss';
@@ -88,6 +89,7 @@ class OrderSearch extends Component{
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </div>
          );
     }

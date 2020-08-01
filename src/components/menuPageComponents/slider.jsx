@@ -3,12 +3,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../../style/layout/menuHeader.scss';
-// import sliderContent1 from '../../img/ad1.PNG';
-// import sliderContent2 from '../../img/ad2.PNG';
-// import sliderContent3 from '../../img/ad3.PNG';
-import sliderContent1 from '../../img/ad4.jpg';
-import sliderContent2 from '../../img/ad5.jpg';
-import sliderContent3 from '../../img/ad6.jpg';
 
 const MenuSlider = () => {
     return ( 
@@ -24,13 +18,13 @@ const MenuSlider = () => {
                 arrows={false}
             >
                 <div className="menuSlider__item">
-                    <img src={sliderContent1} alt="sliderContent1"/>
+                    <img src="https://jr-pizza-backend-img.s3-ap-southeast-2.amazonaws.com/ad4.jpg" alt="sliderContent1"/>
                 </div>
                 <div className="menuSlider__item">
-                    <img src={sliderContent2} alt="sliderContent2"/>
+                    <img src="https://jr-pizza-backend-img.s3-ap-southeast-2.amazonaws.com/ad5.jpg" alt="sliderContent2"/>
                 </div>
                 <div className="menuSlider__item">
-                    <img src={sliderContent3} alt="sliderContent3"/>
+                    <img src="https://jr-pizza-backend-img.s3-ap-southeast-2.amazonaws.com/ad6.jpg" alt="sliderContent3"/>
                 </div>
             </Slider>
         </div>

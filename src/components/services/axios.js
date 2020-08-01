@@ -2,7 +2,9 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { getToken } from '../utils/auth';
 
-axios.defaults.baseURL = "http://localhost:3000/api/v1";
+// axios.defaults.baseURL = "http://localhost:3000/api/v1";
+// axios.defaults.baseURL = "https://tranquil-ocean-01454.herokuapp.com/api/v1";
+axios.defaults.baseURL = "http://margarita-env.eba-9dxd2kxg.us-east-2.elasticbeanstalk.com/api/v1";
 
 const appendAuthToken = config => {
     const jwtToken = getToken();

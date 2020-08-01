@@ -4,6 +4,7 @@ import DoneAllIcon from '@material-ui/icons/DoneAll';
 import LocalPizzaIcon from '@material-ui/icons/LocalPizza';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping'
 import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
+import Footer from '../footer/footer';
 import { getOrder } from '../services/order';
 import '../../style/layout/menuContainer.scss';
 import '../../style/layout/orderTrack.scss';
@@ -90,6 +91,7 @@ class OrderCheck extends Component {
                         <div className="orderCheck__content">{`ORDER ID: ${this.props.match.params.orderId}`}</div>
                     </div>
                 </div>
+                <Footer/>
             </div>
          );
     }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import NavBar from './NavBar/navbar';
 import TextField from '@material-ui/core/TextField';
 import { getCurrentUser } from '../services/user';
@@ -7,7 +7,9 @@ import { addStripe } from "../services/stripe";
 import { getStripeKey } from "../services/stripe";
 import StripeCheckout from "react-stripe-checkout";
 import RenderOrderCard from './common/renderOrderCard';
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Footer from '../footer/footer';
 import '../../style/layout/menuBody.scss';
 import '../../style/layout/menuContainer.scss';
 import '../../style/layout/order.scss';
@@ -17,7 +19,8 @@ class MenuCart extends Component {
         user: '',
         orders: [],
         totalPrice: 0,
-        stripeKey: ''
+        stripeKey: '',
+        isloading: true,
      }
 
     async componentDidMount() {
@@ -26,7 +29,7 @@ class MenuCart extends Component {
         this.setState({ user, stripeKey });
         const orders = this.state.user.userCart.orders
         const totalPrice = this.state.user.userCart.totalPrice
-        this.setState({ orders, totalPrice})
+        this.setState({ orders, totalPrice, isloading: false})
     }
 
     handleRemove = async (productId) => {
@@ -48,7 +51,6 @@ class MenuCart extends Component {
         const price = (this.state.totalPrice).toFixed(2)
         const name = this.state.user.name
         const response = await addStripe(token, price, orders, name)
-        console.log(token)
         if(response.status === 'success') {
             this.props.history.push("/")
             toast('Payment Successful!, Please Check your email for Order ID',
@@ -64,56 +66,61 @@ class MenuCart extends Component {
     }
 
     render() {
-        const { orders, totalPrice, stripeKey } = this.state
+        const { orders, totalPrice, stripeKey, isloading } = this.state
         return ( 
             <div className="container">
-                <NavBar />
-                <div className="contentContainer">
-                    <div className="order">
-                        <div className="order__voucher">
-                            <div className="order__voucher--container">
-                                <div className="order__voucher--title">
-                                    ENTER VOUCHER CODE HERE
+                {isloading ? <CircularProgress className="loadingSpinner"/>:
+                    (<Fragment>
+                        <NavBar />
+                        <div className="contentContainer">
+                            <div className="order">
+                                <div className="order__voucher">
+                                    <div className="order__voucher--container">
+                                        <div className="order__voucher--title">
+                                            ENTER VOUCHER CODE HERE
+                                        </div>
+                                        <div className="order__voucher--input">
+                                            <TextField 
+                                                label="Voucher" 
+                                                variant="outlined"
+                                                size="small"
+                                                fullWidth 
+                                                />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="order__voucher--input">
-                                    <TextField 
-                                        label="Voucher" 
-                                        variant="outlined"
-                                        size="small"
-                                        fullWidth 
-                                        />
+                                <div className="order__details">
+                                    <div className="order__details--title">Order Details</div>
+                                    <RenderOrderCard cardList={orders} handleRemove={this.handleRemove}/>
+                                </div>
+                                { this.isCartEmpty() &&
+                                    <div className="order__message">
+                                        <div>Your Cart is Empty</div>
+                                    </div>
+                                }
+                                { !this.isCartEmpty() &&
+                                    <div className="order__totalPrice">
+                                        <div>TOTAL</div>
+                                        <div>{`$${totalPrice}`}</div>
+                                    </div>
+                                }
+                                <div className="order__submit">
+                                    { !this.isCartEmpty() && 
+                                    stripeKey && totalPrice!==0 && <StripeCheckout
+                                    stripeKey={stripeKey}
+                                    token={this.handlePayment}
+                                    billingAddress
+                                    shippingAddress
+                                    amount={totalPrice*100}
+                                    name="ORDER"
+                                    ><button>MAKE PAYMENT</button></StripeCheckout>
+                                    }
                                 </div>
                             </div>
                         </div>
-                        <div className="order__details">
-                            <div className="order__details--title">Order Details</div>
-                            <RenderOrderCard cardList={orders} handleRemove={this.handleRemove}/>
-                        </div>
-                        { this.isCartEmpty() &&
-                            <div className="order__message">
-                                <div>Your Cart is Empty</div>
-                            </div>
-                        }
-                        { !this.isCartEmpty() &&
-                            <div className="order__totalPrice">
-                                <div>TOTAL</div>
-                                <div>{`$${totalPrice}`}</div>
-                            </div>
-                        }
-                        <div className="order__submit">
-                            { !this.isCartEmpty() && 
-                            stripeKey && totalPrice!==0 && <StripeCheckout
-                            stripeKey={stripeKey}
-                            token={this.handlePayment}
-                            billingAddress
-                            shippingAddress
-                            amount={totalPrice*100}
-                            name="ORDER"
-                            ><button>MAKE PAYMENT</button></StripeCheckout>
-                            }
-                        </div>
-                    </div>
-                </div>
+                        <Footer/>
+                    </Fragment>)
+                }
             </div> 
          );
     }
