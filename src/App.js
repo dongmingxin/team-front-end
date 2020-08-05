@@ -11,28 +11,14 @@ import MnueDesserts from './components/menuPageComponents/menuDesserts';
 import Login from './components/loginPageComponents/login';
 import Logout from './components/loginPageComponents/logout';
 import Register from './components/loginPageComponents/register';
-import ProductPage from './components/menuPageComponents/common/productPage';
+import ProductPage from './components/menuPageComponents/productPage';
 import OrderSearch from './components/trackOrderPageComponents/orderSearch';
 import OrderCheck from './components/trackOrderPageComponents/orderTrack';
 import PageNotFound from './components/pageNotFound/pageNotFound';
 import ProtectedRoute from './components/utils/protectedRoute';
 import pageUnauthorized from './components/pageNotFound/pageUnauthorized';
-import { getCurrentUser } from './components/services/user';
-import { isLoggedIn } from './components/utils/auth';
-import tapIcon from './img/pizzaIcon.jpg';
 
-class App extends Component {
-  state = {
-    user: {}
-  };
-
-  async componentDidMount() {
-    if (!isLoggedIn === false) return;
-    const user = await getCurrentUser();
-    this.setState({user}); 
-  }
-
-  render() {
+const App = () => {
     return (
       <Fragment >
         <ToastContainer />
@@ -59,7 +45,6 @@ class App extends Component {
           </Switch>
       </Fragment>
     );
-  }
 }
 
 export default App;

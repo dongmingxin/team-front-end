@@ -43,9 +43,7 @@ class MenuDrinks extends Component {
                         <NavBar />
                         <div className="contentContainer">
                             <MenuSlider />
-                            {isloading ? 
-                                <CircularProgress className="loadingSpinner"/> : 
-                                (this.state.drinkGenres && this.state.drinkGenres.map(drinkGenre => (
+                            {this.state.drinkGenres && this.state.drinkGenres.map(drinkGenre => (
                                 <div className="category" key={drinkGenre._id}>
                                     <div className="category__title">{drinkGenre.name}</div>
                                     <RenderCard 
@@ -53,8 +51,7 @@ class MenuDrinks extends Component {
                                         handleSelect = {this.handleSelect}
                                     />
                                 </div>
-                                ))) 
-                            }
+                            ))} 
                         </div>
                         <Footer/>
                     </Fragment>)

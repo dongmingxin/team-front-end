@@ -46,9 +46,7 @@ class MenuSides extends Component {
                     <NavBar />
                     <div className="contentContainer">
                         <MenuSlider />
-                        {isloading ? 
-                            <CircularProgress className="loadingSpinner"/> : 
-                            (this.state.sideGenres && this.state.sideGenres.map(sideGenre => (
+                        {this.state.sideGenres && this.state.sideGenres.map(sideGenre => (
                             <div className="category" key={sideGenre._id}>
                                 <div className="category__title">{sideGenre.name}</div>
                                 <RenderCard 
@@ -56,8 +54,7 @@ class MenuSides extends Component {
                                     handleSelect = {this.handleSelect}
                                 />
                             </div>
-                            ))) 
-                        }
+                        ))} 
                     </div>
                     <Footer/>
                 </Fragment>)

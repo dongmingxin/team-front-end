@@ -15,8 +15,6 @@ class NavBar extends Component {
     componentDidMount() {
         if (isLoggedIn() === false) return;
         this.setState({ isloggedIn: true})
-        // const user = await getCurrentUser();
-        // this.setState({ user });
     }
 
     handleDropDownList = () => {

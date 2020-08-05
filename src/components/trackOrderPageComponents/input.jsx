@@ -14,7 +14,6 @@ const Input = ({name, value, label, onChange, type, error}) => {
                 value={value}
                 onChange={onChange} 
                 variant="outlined"
-                // size="small"
             >
             </TextField>
             {error && <Alert variant="outlined" severity="error" className="errorMessage">

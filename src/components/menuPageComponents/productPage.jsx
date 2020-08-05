@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import Alert from '@material-ui/lab/Alert';
-import NavBar from '../NavBar/navbar';
-import { getProduct } from '../../services/products';
-import { getCurrentUser } from '../../services/user';
-import { addProductToCart } from '../../services/cart';
+import NavBar from './NavBar/navbar';
+import { getProduct } from '../services/products';
+import { getCurrentUser } from '../services/user';
+import { addProductToCart } from '../services/cart';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Footer from '../../footer/footer';
-import '../../../style/layout/menuBody.scss';
-import '../../../style/layout/menuContainer.scss';
-import '../../../style/layout/product.scss';
+import Footer from '../footer/footer';
+import '../../style/layout/menuBody.scss';
+import '../../style/layout/menuContainer.scss';
+import '../../style/layout/product.scss';
 
 class ProductPage extends Component {
     state = { 
@@ -36,11 +36,9 @@ class ProductPage extends Component {
     handleInputError = (input) => {
         if (!Number.isInteger(input) || input < 1) {
             const error = 'Please Enter a valid value'
-            this.setState({ error })
-            return 
+            return this.setState({ error })
         }
-        this.setState({ error: '' })
-        return 
+        return this.setState({ error: '' })        
     }
  
 

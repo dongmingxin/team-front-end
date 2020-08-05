@@ -39,11 +39,11 @@ class MenuPizza extends Component {
         return (
             <div className="container">
             {isloading ? <CircularProgress className="loadingSpinner"/>: 
-            (<Fragment>
-                <NavBar />
-                <div className="contentContainer">
-                    <MenuSlider />
-                            {this.state.pizzaGenres && this.state.pizzaGenres.map(pizzaGenre => (
+                (<Fragment>
+                    <NavBar />
+                    <div className="contentContainer">
+                        <MenuSlider />
+                        {this.state.pizzaGenres && this.state.pizzaGenres.map(pizzaGenre => (
                             <div className="category" key={pizzaGenre._id}>
                                 <div className="category__title">{pizzaGenre.name}</div>
                                 <RenderCard 
@@ -53,9 +53,9 @@ class MenuPizza extends Component {
                             </div>
                             ))
                         }
-                    </div>
-                <Footer/>
-            </Fragment>)
+                        </div>
+                    <Footer/>
+                </Fragment>)
             }
             </div>
          

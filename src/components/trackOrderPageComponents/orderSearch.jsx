@@ -41,8 +41,7 @@ class OrderSearch extends Component{
     doSubmit = async () => {
         try {
             await getOrder(this.state.inputs.orderId);
-            this.props.history.push(`/track/${this.state.inputs.orderId}`)
-            // window.location = '/';        
+            this.props.history.push(`/track/${this.state.inputs.orderId}`)        
         } catch (ex) {
             if (ex.response && ex.response.status === 404) {
                 const errors = {...this.state.errors};
